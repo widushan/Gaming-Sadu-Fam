@@ -26,11 +26,10 @@ export default function Navbar() {
 
     return (
         <header className="sticky top-0 z-50">
-            <nav className="h-[70px] relative w-full px-6 md:px-16 lg:px-24 xl:px-32 flex items-center justify-between bg-gradient-to-r from-indigo-700 to-violet-500">
-                <Logo />
+            <nav className="h-[70px] relative w-full px-6 md:px-16 lg:px-24 xl:px-32 flex items-center justify-between z-30 bg-gradient-to-r from-indigo-700 to-violet-500 transition-all">
+                <Logo variant="light" />
 
-                {/* Desktop nav */}
-                <ul className="hidden md:flex items-center gap-10">
+                <ul className="text-white md:flex hidden items-center gap-10">
                     {links.map((l) => {
                         const active =
                             l.href === "/" ? pathname === "/" : pathname.startsWith(l.href);
@@ -39,7 +38,7 @@ export default function Navbar() {
                                 <Link
                                     href={l.href}
                                     className={cn(
-                                        "text-sm font-medium text-white/85 hover:text-white transition relative",
+                                        "hover:text-white/70 transition relative text-sm font-medium",
                                         active && "text-white"
                                     )}
                                 >
@@ -53,15 +52,13 @@ export default function Navbar() {
                     })}
                 </ul>
 
-                {/* Mobile menu button */}
                 <button
-                    aria-label="Toggle menu"
-                    aria-expanded={open}
+                    aria-label="menu-btn"
                     type="button"
                     onClick={() => setOpen((v) => !v)}
-                    className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-lg text-white active:scale-90 transition"
+                    className="menu-btn inline-block md:hidden active:scale-90 transition text-white"
                 >
-                    <svg width="26" height="26" viewBox="0 0 30 30" fill="currentColor" aria-hidden>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="currentColor">
                         {open ? (
                             <path d="M8 8l14 14M22 8L8 22" stroke="currentColor" strokeWidth="2" strokeLinecap="round" fill="none" />
                         ) : (

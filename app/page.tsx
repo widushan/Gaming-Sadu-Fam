@@ -1,13 +1,20 @@
 // app/page.tsx
-import Container from "@/components/ui/Container";
+import HeroSection from "@/components/home/HeroSection";
+import AboutPreview from "@/components/home/AboutPreview";
+import ServicesPreview from "@/components/home/ServicesPreview";
+import ChannelsSection from "@/components/home/ChannelsSection";
+import StatsSection from "@/components/home/StatsSection";
+import CTASection from "@/components/home/CTASection";
 
 export default function HomePage() {
   return (
-    <Container className="py-24">
-      <h1>Welcome to <span className="text-gradient">Gaming Sadu Fam</span></h1>
-      <p className="mt-4 max-w-2xl">
-        Home page — hero section will be built here.
-      </p>
-    </Container>
+    <>
+      <HeroSection />
+      <AboutPreview />
+      <ServicesPreview />
+      <ChannelsSection />
+      <StatsSection />
+      <CTASection />
+    </>
   );
 }

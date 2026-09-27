@@ -1,6 +1,7 @@
 // components/layout/Footer.tsx
 import Container from "@/components/ui/Container";
 import Link from "next/link";
+import Logo from "./Logo";
 
 const columns = [
     {
@@ -9,13 +10,11 @@ const columns = [
             { label: "Home", href: "/" },
             { label: "About Us", href: "/about-us" },
             { label: "Our Services", href: "/our-services" },
-            { label: "FF Gaming", href: "/ff-gaming" },
-            { label: "Our Vlogs", href: "/our-vlogs" },
             { label: "Contact Us", href: "/contact-us" },
         ],
     },
     {
-        title: "Services",
+        title: "Need Help?",
         links: [
             { label: "Diamond Top-Up", href: "https://tharustore.com" },
             { label: "Account Marketplace", href: "https://duggyffstore.com" },
@@ -29,7 +28,6 @@ const columns = [
             { label: "Facebook", href: "https://facebook.com/FreeFireSadu" },
             { label: "Instagram", href: "https://instagram.com/gaming__sadu" },
             { label: "TikTok", href: "https://tiktok.com/@gaming_sadu_official" },
-            { label: "WhatsApp", href: "https://whatsapp.com/FreeFireSadu" },
             { label: "YouTube", href: "https://youtube.com/@GamingSadu" },
         ],
     },
@@ -37,34 +35,24 @@ const columns = [
 
 export default function Footer() {
     return (
-        <footer className="mt-20 bg-[--color-bg-section] border-t border-[--color-border]">
-            <Container>
-                <div className="grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-5">
-                    <div className="lg:col-span-2">
-                        <div className="flex items-center gap-2.5">
-                            <div className="h-9 w-9 rounded-lg bg-[--color-primary]" />
-                            <span className="text-sm font-bold uppercase tracking-wide text-[--color-heading]">
-                                Gaming Sadu Fam
-                            </span>
-                        </div>
-                        <p className="mt-5 max-w-sm text-sm text-[--color-body]">
-                            Sri Lanka&apos;s Free Fire community — live streams, trusted diamond
-                            top-ups, verified account marketplace, and real-life vlogs.
-                        </p>
-                    </div>
-
+        <footer className="mt-20 px-6 md:px-16 lg:px-24 xl:px-32 bg-[--color-bg-section]">
+            <div className="flex flex-col md:flex-row items-start justify-between gap-10 py-10 border-b border-gray-300 text-gray-500">
+                <div className="md:w-1/3">
+                    <Logo variant="dark" />
+                    <p className="max-w-[410px] mt-6 text-sm">
+                        Gaming Sadu Fam is a community built — live gameplay, competitive and trusted diamond store with free fire account buy and sell platform and real behind-the-scenes vlogs.
+                    </p>
+                </div>
+                <div className="flex flex-wrap justify-between w-full md:w-[60%] gap-5">
                     {columns.map((col) => (
                         <div key={col.title}>
-                            <h4 className="mb-4 text-sm font-semibold text-[--color-heading]">
+                            <h3 className="font-semibold text-base text-gray-900 md:mb-5 mb-2">
                                 {col.title}
-                            </h4>
-                            <ul className="space-y-2 text-sm">
+                            </h3>
+                            <ul className="text-sm space-y-2">
                                 {col.links.map((l) => (
                                     <li key={l.href}>
-                                        <Link
-                                            href={l.href}
-                                            className="text-[--color-body] hover:text-[--color-primary] transition-colors"
-                                        >
+                                        <Link href={l.href} className="hover:underline hover:text-[--color-primary] transition-colors">
                                             {l.label}
                                         </Link>
                                     </li>
@@ -73,12 +61,11 @@ export default function Footer() {
                         </div>
                     ))}
                 </div>
-
-                <div className="border-t border-[--color-border] py-6 text-center text-xs text-[--color-muted]">
-                    © {new Date().getFullYear()} Gaming Sadu Fam. All rights reserved. <br />
-                    Designed and Developed by PASiNDU K.W
-                </div>
-            </Container>
+            </div>
+            <p className="py-4 text-center text-sm md:text-base text-gray-500/80">
+                Copyright {new Date().getFullYear()} © Gaming Sadu Fam. All Right Reserved. <br />
+                Designed and Developed by PASiNDU K.W
+            </p>
         </footer>
     );
 }
