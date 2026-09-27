@@ -7,7 +7,7 @@ type Variant = "primary" | "secondary" | "ghost" | "link";
 type Size = "sm" | "md" | "lg";
 
 const base =
-    "inline-flex items-center justify-center gap-2 font-medium rounded-full transition-all duration-200 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[--color-primary] focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none";
+    "inline-flex items-center justify-center whitespace-nowrap gap-2 font-medium rounded-full transition-all duration-200 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[--color-primary] focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none";
 
 const variants: Record<Variant, string> = {
     primary:

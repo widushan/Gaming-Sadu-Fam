@@ -6,7 +6,7 @@ import { Play, Diamond } from "lucide-react";
 
 export default function HeroSection() {
     return (
-        <section className="relative overflow-hidden pt-5 pb-32 bg-[url('/images/home/homeHeroBg.jpg')] bg-cover bg-center bg-no-repeat">
+        <section className="relative overflow-hidden pt-8 pb-32 bg-[url('/images/home/homeHeroBg.jpg')] bg-cover bg-center bg-no-repeat">
             <Container className="relative z-10 grid lg:grid-cols-2 gap-16 items-center">
                 {/* Left Column */}
                 <div className="flex flex-col items-center lg:items-start gap-8 text-center lg:text-left">
