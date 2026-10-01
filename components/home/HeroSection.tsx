@@ -35,8 +35,8 @@ export default function HeroSection() {
                         Sri Lanka's premier Free Fire community — home to live gameplay, competitive tournaments, a trusted diamond store, secure account marketplace, and real behind-the-scenes vlogs.
                     </p>
 
-                    <div className="flex flex-col items-center gap-6 mt-4 w-full">
-                        <div className="flex items-center justify-center gap-8 md:gap-12">
+                    <div className="flex flex-col gap-6 mt-4 w-full">
+                        <div className="flex gap-8 md:gap-12">
                             <Image
                                 src="/images/home/saduLogo.png"
                                 alt="Gaming Sadu"

@@ -48,7 +48,7 @@ export default function DiamondTopUp() {
                         </ul>
                     </div>
 
-                    <Button href="#" size="lg" variant="primary" className="mt-4">
+                    <Button href="https://tharustore.com/" size="lg" variant="primary" className="mt-4">
                         Visit Diamond Store
                     </Button>
                 </div>

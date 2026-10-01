@@ -1,5 +1,24 @@
 // app/our-vlogs/page.tsx
-import Container from "@/components/ui/Container";
+import VlogsHero from "@/components/vlogs/VlogsHero";
+import AboutVlogs from "@/components/vlogs/AboutVlogs";
+import VlogGallery from "@/components/vlogs/VlogGallery";
+import VlogsContent from "@/components/vlogs/VlogsContent";
+import LatestVlogs from "@/components/vlogs/LatestVlogs";
+import AchievementsSection from "@/components/vlogs/AchievementsSection";
+import VlogsCTA from "@/components/vlogs/VlogsCTA";
+
 export default function VlogsPage() {
-    return <Container className="py-24"><h1>Our Vlogs</h1></Container>;
+    return (
+        <div className="bg-white">
+            <VlogsHero />
+            <AboutVlogs />
+            <section className="py-12 bg-white">
+                <VlogGallery />
+            </section>
+            <VlogsContent />
+            <LatestVlogs />
+            <AchievementsSection />
+            <VlogsCTA />
+        </div>
+    );
 }
