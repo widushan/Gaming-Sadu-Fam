@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import SectionTitle from "@/components/ui/SectionTitle";
@@ -60,9 +61,11 @@ export default function LatestVlogs() {
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
                     {latestVlogs.map((video) => (
                         <div key={video.id} className="bg-slate-50 border border-slate-200 rounded-2xl flex flex-col group overflow-hidden transition duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-sm">
-                            <img
+                            <Image
                                 src={video.image}
                                 alt={video.title}
+                                width={600}
+                                height={400}
                                 className="w-full h-64 object-cover rounded-t-2xl rounded-b-none transition-transform duration-500 group-hover:scale-105"
                             />
                             <div className="p-6 flex flex-col flex-1 relative bg-slate-50 z-10">

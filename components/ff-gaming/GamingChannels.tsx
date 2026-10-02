@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Container from "@/components/ui/Container";
 import SectionTitle from "@/components/ui/SectionTitle";
 import Button from "@/components/ui/Button";
@@ -60,9 +61,11 @@ export default function GamingChannels() {
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {channel.videos.map((video, j) => (
                                 <div key={j} className="bg-slate-50 border border-slate-200 rounded-2xl flex flex-col group overflow-hidden transition duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-md">
-                                    <img
+                                    <Image
                                         src={video.image}
                                         alt={video.title}
+                                        width={600}
+                                        height={400}
                                         className="w-full h-56 object-cover rounded-t-2xl rounded-b-none"
                                     />
                                     <div className="p-6 flex flex-col flex-1">
