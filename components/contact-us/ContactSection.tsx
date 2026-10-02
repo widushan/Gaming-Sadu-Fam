@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 // SVG Icons
@@ -50,6 +53,95 @@ const contactOptions = [
 ];
 
 export default function ContactSection() {
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [resultMessage, setResultMessage] = useState("");
+    const [resultType, setResultType] = useState<"success" | "error" | "">("");
+
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+    });
+
+    const [errors, setErrors] = useState({
+        name: "",
+        email: "",
+        message: "",
+    });
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { id, value } = e.target;
+        setFormData(prev => ({ ...prev, [id]: value }));
+        
+        if (errors[id as keyof typeof errors]) {
+            setErrors(prev => ({ ...prev, [id]: "" }));
+        }
+    };
+
+    const validateForm = () => {
+        let isValid = true;
+        const newErrors = { name: "", email: "", message: "" };
+
+        if (!formData.name.trim()) {
+            newErrors.name = "Name is required";
+            isValid = false;
+        }
+
+        if (!formData.email.trim()) {
+            newErrors.email = "Email is required";
+            isValid = false;
+        } else if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(formData.email)) {
+            newErrors.email = "Please enter a valid email address";
+            isValid = false;
+        }
+
+        if (!formData.message.trim()) {
+            newErrors.message = "Message is required";
+            isValid = false;
+        }
+
+        setErrors(newErrors);
+        return isValid;
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+
+        if (!validateForm()) return;
+
+        setIsSubmitting(true);
+        setResultMessage("");
+        
+        try {
+            const response = await fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application/json",
+                },
+                body: JSON.stringify({
+                    access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "YOUR_ACCESS_KEY_HERE",
+                    ...formData,
+                }),
+            });
+            const result = await response.json();
+            if (result.success) {
+                setResultType("success");
+                setResultMessage("Message sent successfully! We'll get back to you soon.");
+                setFormData({ name: "", email: "", subject: "", message: "" });
+            } else {
+                setResultType("error");
+                setResultMessage(result.message || "Something went wrong. Please try again.");
+            }
+        } catch (error) {
+            setResultType("error");
+            setResultMessage("An error occurred. Please try again later.");
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
     return (
         <section className="py-24 bg-white relative">
             <Container className="grid lg:grid-cols-2 gap-16">
@@ -60,30 +152,39 @@ export default function ContactSection() {
                         <p className="text-[var(--color-body)]">Fill out the form below and we'll get back to you as soon as possible.</p>
                     </div>
 
-                    <form className="flex flex-col gap-6">
+                    <form onSubmit={handleSubmit} className="flex flex-col gap-6">
                         <div className="grid md:grid-cols-2 gap-6">
                             <div className="flex flex-col gap-2">
-                                <label htmlFor="name" className="text-sm font-semibold text-[var(--color-heading)]">Name</label>
-                                <input type="text" id="name" placeholder="Gaming Sadu" className="px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] bg-gray-50 focus:bg-white transition-colors" />
+                                <label htmlFor="name" className="text-sm font-semibold text-[var(--color-heading)]">Name <span className="text-[var(--color-primary)]">*</span></label>
+                                <input type="text" id="name" value={formData.name} onChange={handleChange} placeholder="Gaming Sadu" className={`px-4 py-3 rounded-xl border ${errors.name ? 'border-red-500' : 'border-gray-200'} focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] bg-gray-50 focus:bg-white transition-colors`} />
+                                {errors.name && <span className="text-xs font-medium text-red-500">{errors.name}</span>}
                             </div>
                             <div className="flex flex-col gap-2">
-                                <label htmlFor="email" className="text-sm font-semibold text-[var(--color-heading)]">Email</label>
-                                <input type="email" id="email" placeholder="sadu2001@gmail.com" className="px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] bg-gray-50 focus:bg-white transition-colors" />
+                                <label htmlFor="email" className="text-sm font-semibold text-[var(--color-heading)]">Email <span className="text-[var(--color-primary)]">*</span></label>
+                                <input type="email" id="email" value={formData.email} onChange={handleChange} placeholder="sadu2001@gmail.com" className={`px-4 py-3 rounded-xl border ${errors.email ? 'border-red-500' : 'border-gray-200'} focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] bg-gray-50 focus:bg-white transition-colors`} />
+                                {errors.email && <span className="text-xs font-medium text-red-500">{errors.email}</span>}
                             </div>
                         </div>
 
                         <div className="flex flex-col gap-2">
                             <label htmlFor="subject" className="text-sm font-semibold text-[var(--color-heading)]">Subject</label>
-                            <input type="text" id="subject" placeholder="How can we help?" className="px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] bg-gray-50 focus:bg-white transition-colors" />
+                            <input type="text" id="subject" value={formData.subject} onChange={handleChange} placeholder="How can we help?" className="px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] bg-gray-50 focus:bg-white transition-colors" />
                         </div>
 
                         <div className="flex flex-col gap-2">
-                            <label htmlFor="message" className="text-sm font-semibold text-[var(--color-heading)]">Message</label>
-                            <textarea id="message" rows={5} placeholder="Write your message here..." className="px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] bg-gray-50 focus:bg-white transition-colors resize-none"></textarea>
+                            <label htmlFor="message" className="text-sm font-semibold text-[var(--color-heading)]">Message <span className="text-[var(--color-primary)]">*</span></label>
+                            <textarea id="message" rows={5} value={formData.message} onChange={handleChange} placeholder="Write your message here..." className={`px-4 py-3 rounded-xl border ${errors.message ? 'border-red-500' : 'border-gray-200'} focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] bg-gray-50 focus:bg-white transition-colors resize-none`}></textarea>
+                            {errors.message && <span className="text-xs font-medium text-red-500">{errors.message}</span>}
                         </div>
 
-                        <Button type="button" size="lg" variant="primary" className="w-full mt-2">
-                            Send Message
+                        {resultMessage && (
+                            <div className={`p-4 rounded-xl text-sm font-medium ${resultType === 'success' ? 'bg-green-50 text-green-700 border border-green-200' : 'bg-red-50 text-red-700 border border-red-200'}`}>
+                                {resultMessage}
+                            </div>
+                        )}
+
+                        <Button type="submit" size="lg" variant="primary" className="w-full mt-2" disabled={isSubmitting}>
+                            {isSubmitting ? "Sending..." : "Send Message"}
                         </Button>
                     </form>
                 </div>
