@@ -74,7 +74,7 @@ export default function ChannelsSection() {
                                 rel="noopener noreferrer"
                                 className={cn(
                                     "font-medium text-sm pl-2 mt-auto",
-                                    item.color === "purple" ? "text-[var(--color-primary)]" : "text-[var(--color-secondary)]"
+                                    item.color === "purple" ? "text-[var(--color-primary)]" : "text-cyan-700"
                                 )}
                             >
                                 {item.linkText}

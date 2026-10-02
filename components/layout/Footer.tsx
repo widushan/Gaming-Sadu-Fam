@@ -62,7 +62,7 @@ export default function Footer() {
                     ))}
                 </div>
             </div>
-            <p className="py-4 text-center text-sm md:text-base text-gray-500/80">
+            <p className="py-4 text-center text-sm md:text-base text-gray-600">
                 Copyright {new Date().getFullYear()} © Gaming Sadu Fam. All Right Reserved. <br />
                 Designed and Developed by PASiNDU K.W
             </p>
