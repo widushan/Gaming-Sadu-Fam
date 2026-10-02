@@ -24,6 +24,7 @@ export default function ImageGrid() {
                                 src={src}
                                 alt={`Gallery image ${i + 1}`}
                                 fill
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                 className="object-cover object-center"
                             />
                         </div>

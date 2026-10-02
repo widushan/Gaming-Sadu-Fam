@@ -38,8 +38,12 @@ export default function OurValues() {
                     {values.map((value, i) => {
                         const Icon = value.icon;
                         return (
-                            <div key={i} className="flex flex-col items-center text-center p-6 rounded-2xl bg-[var(--color-bg-section)] hover:shadow-card transition-all duration-300">
-                                <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-sm mb-6 text-[var(--color-primary)]">
+                            <div
+                                key={i}
+                                className="group flex flex-col items-center text-center p-6 rounded-2xl bg-[var(--color-bg-section)] transition-all duration-300 hover:-translate-y-2 hover:shadow-card motion-reduce:transform-none"
+                            >
+                                {/* Icon circle fills with the brand color on hover */}
+                                <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-sm mb-6 text-[var(--color-primary)] transition-colors duration-300 group-hover:bg-[var(--color-primary)] group-hover:text-white">
                                     <Icon size={32} />
                                 </div>
                                 <h4 className="mb-3">{value.title}</h4>

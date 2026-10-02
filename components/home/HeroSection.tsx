@@ -1,8 +1,26 @@
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import Badge from "@/components/ui/Badge";
+import TiltCard from "@/components/ui/TiltCard";
 import Image from "next/image";
-import { Play, Diamond } from "lucide-react";
+
+// Masonry columns: heights stay the same as before
+const heroColumns = [
+    {
+        className: "mt-12",
+        items: [
+            { src: "/images/home/1hero.jpg", alt: "Gaming Sadu couple image 1", height: "h-64" },
+            { src: "/images/home/2hero.jpg", alt: "Gaming Sadu couple image 2", height: "h-80" },
+        ],
+    },
+    {
+        className: "",
+        items: [
+            { src: "/images/home/3hero.jpg", alt: "Gaming Sadu couple image 3", height: "h-80" },
+            { src: "/images/home/4hero.jpg", alt: "Gaming Sadu couple image 4", height: "h-64" },
+        ],
+    },
+];
 
 export default function HeroSection() {
     return (
@@ -18,6 +36,7 @@ export default function HeroSection() {
                                         src={`/images/home/avatar-${i}.jpg`}
                                         alt="Community member"
                                         fill
+                                        sizes="28px"
                                         className="object-cover"
                                     />
                                 </div>
@@ -42,14 +61,14 @@ export default function HeroSection() {
                                 alt="Gaming Sadu"
                                 width={100}
                                 height={100}
-                                className="object-contain"
+                                className="object-contain w-auto h-auto"
                             />
                             <Image
                                 src="/images/home/tharuLogo.png"
                                 alt="Tharu Store"
                                 width={55}
                                 height={55}
-                                className="object-contain"
+                                className="object-contain w-auto h-auto"
                             />
                         </div>
 
@@ -59,44 +78,23 @@ export default function HeroSection() {
                     </div>
                 </div>
 
-                {/* Right Column (Masonry Grid) */}
+                {/* Right Column (Masonry Grid with 3D tilt) */}
                 <div className="grid grid-cols-2 gap-4 h-[600px] relative">
-                    <div className="flex flex-col gap-4 mt-12">
-                        <div className="relative h-64 rounded-2xl overflow-hidden shadow-soft group">
-                            <Image
-                                src="/images/home/1hero.jpg"
-                                alt="Gaming Sadu couple image 1"
-                                fill
-                                className="object-cover transition-transform duration-700 group-hover:scale-110"
-                            />
+                    {heroColumns.map((col, c) => (
+                        <div key={c} className={`flex flex-col gap-4 ${col.className}`}>
+                            {col.items.map((img, r) => (
+                                <TiltCard key={img.src} className={img.height} index={c * 2 + r}>
+                                    <Image
+                                        src={img.src}
+                                        alt={img.alt}
+                                        fill
+                                        sizes="(min-width: 1024px) 25vw, 50vw"
+                                        className="object-cover"
+                                    />
+                                </TiltCard>
+                            ))}
                         </div>
-                        <div className="relative h-80 rounded-2xl overflow-hidden shadow-soft group">
-                            <Image
-                                src="/images/home/2hero.jpg"
-                                alt="Gaming Sadu couple image 2"
-                                fill
-                                className="object-cover transition-transform duration-700 group-hover:scale-110"
-                            />
-                        </div>
-                    </div>
-                    <div className="flex flex-col gap-4">
-                        <div className="relative h-80 rounded-2xl overflow-hidden shadow-soft group">
-                            <Image
-                                src="/images/home/3hero.jpg"
-                                alt="Gaming Sadu couple image 3"
-                                fill
-                                className="object-cover transition-transform duration-700 group-hover:scale-110"
-                            />
-                        </div>
-                        <div className="relative h-64 rounded-2xl overflow-hidden shadow-soft group">
-                            <Image
-                                src="/images/home/4hero.jpg"
-                                alt="Gaming Sadu couple image 4"
-                                fill
-                                className="object-cover transition-transform duration-700 group-hover:scale-110"
-                            />
-                        </div>
-                    </div>
+                    ))}
                 </div>
             </Container>
         </section>

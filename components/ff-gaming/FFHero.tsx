@@ -12,6 +12,8 @@ export default function FFHero() {
                             src="/images/ff-gaming/ffHero1.jpg"
                             alt="Free Fire Gameplay"
                             fill
+                            priority
+                            sizes="(max-width: 1024px) 100vw, 50vw"
                             className="object-cover transition-transform duration-700 group-hover:scale-105"
                         />
                     </div>
@@ -20,6 +22,7 @@ export default function FFHero() {
                             src="/images/ff-gaming/ffHero2.jpg"
                             alt="Free Fire Squad"
                             fill
+                            sizes="(max-width: 1024px) 100vw, 50vw"
                             className="object-cover transition-transform duration-700 group-hover:scale-105"
                         />
                     </div>
