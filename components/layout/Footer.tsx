@@ -63,8 +63,16 @@ export default function Footer() {
                 </div>
             </div>
             <p className="py-4 text-center text-sm md:text-base text-gray-600">
-                Copyright {new Date().getFullYear()} © Gaming Sadu Fam. All Right Reserved. <br />
-                Designed and Developed by PASiNDU K.W
+                Copyright 2026 © Gaming Sadu Fam. All Right Reserved. <br />
+                Designed and Developed by{" "}
+                <a
+                    href="https://my-portfolio-omega-two-21.vercel.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:underline"
+                >
+                    PASiNDU K.W
+                </a>
             </p>
         </footer>
     );
