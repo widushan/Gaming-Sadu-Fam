@@ -22,7 +22,9 @@ export default function Navbar() {
     const [open, setOpen] = useState(false);
 
     // Close mobile menu on route change
-    useEffect(() => setOpen(false), [pathname]);
+    useEffect(() => {
+        setOpen(false);
+    }, [pathname]);
 
     return (
         <header className="sticky top-0 z-50">
@@ -53,10 +55,11 @@ export default function Navbar() {
                 </ul>
 
                 <button
-                    aria-label="menu-btn"
+                    aria-label="Toggle menu"
+                    aria-expanded={open}
                     type="button"
                     onClick={() => setOpen((v) => !v)}
-                    className="menu-btn inline-block md:hidden active:scale-90 transition text-white"
+                    className="menu-btn relative z-40 p-2 md:hidden text-white touch-manipulation active:scale-90 transition"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="currentColor">
                         {open ? (
