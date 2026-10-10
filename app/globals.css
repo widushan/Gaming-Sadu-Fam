@@ -1,12 +1,14 @@
 /* app/globals.css */
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* ============================================================
    GAMING SADU FAM — DESIGN TOKENS
    Change anything here → propagates everywhere
    ============================================================ */
 
-@theme {
+:root {
   /* ---------- COLORS ---------- */
   --color-bg-main: #FFFFFF;
   --color-bg-section: #F8FAFC;
