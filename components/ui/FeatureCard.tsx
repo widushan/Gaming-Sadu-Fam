@@ -11,9 +11,9 @@ type FeatureCardProps = {
 export default function FeatureCard({ title, description, icon: Icon, href }: FeatureCardProps) {
     return (
         // Outer shell: 2px padding = border thickness, light grey track behind the moving light
-        <div className="group relative flex flex-col overflow-hidden rounded-2xl bg-[var(--color-border)] p-[2px] transition-shadow duration-300 hover:shadow-card">
+        <div className="group relative z-0 flex flex-col overflow-hidden rounded-2xl bg-[var(--color-border)] p-[2px] transition-shadow duration-300 hover:shadow-card">
             {/* Running purple light (stops while the card is hovered) */}
-            <div aria-hidden className="pointer-events-none absolute inset-0 flex items-center justify-center">
+            <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden rounded-2xl flex items-center justify-center">
                 <div
                     className="aspect-square w-[160%] shrink-0 animate-spin group-hover:[animation-play-state:paused] motion-reduce:animate-none"
                     style={{
