@@ -14,7 +14,7 @@ export default function Logo({
 
     return (
         <Link href="/" className={cn("flex items-center gap-2.5 shrink-0", className)}>
-            <div className="relative h-18 w-18">
+            <div className="relative h-[72px] w-[72px]">
                 {/* Replace /images/logo.png with your actual logo file */}
                 <Image
                     src="/images/Gaming_Sadu_Fam_logo.png"
