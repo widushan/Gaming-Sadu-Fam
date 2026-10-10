@@ -7,7 +7,6 @@ import Footer from "@/components/layout/Footer";
 
 const sourceSans = Source_Sans_3({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
   variable: "--font-source-sans",
   display: "swap",
 });
