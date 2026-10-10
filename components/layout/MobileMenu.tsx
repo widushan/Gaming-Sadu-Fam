@@ -27,12 +27,9 @@ export default function MobileMenu({
     return (
         <div
             className={cn(
-                "absolute top-[70px] left-0 w-full md:hidden",
-                "bg-gradient-to-r from-indigo-700 to-violet-500",
-                "origin-top transition-all duration-300",
-                open
-                    ? "opacity-100 translate-y-0 pointer-events-auto"
-                    : "opacity-0 -translate-y-3 pointer-events-none"
+                "absolute top-[70px] left-0 w-full md:hidden z-40 transition-opacity duration-300",
+                "bg-[linear-gradient(to_right,#4338ca,#8b5cf6)] max-h-[calc(100dvh-70px)] overflow-y-auto",
+                open ? "opacity-100 visible" : "opacity-0 invisible"
             )}
         >
             <ul className="flex flex-col p-6 gap-1">

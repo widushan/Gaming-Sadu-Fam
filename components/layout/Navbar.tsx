@@ -26,7 +26,7 @@ export default function Navbar() {
 
     return (
         <header className="sticky top-0 z-50">
-            <nav className="h-[70px] relative w-full px-6 md:px-16 lg:px-24 xl:px-32 flex items-center justify-between z-30 bg-gradient-to-r from-indigo-700 to-violet-500 transition-all">
+            <nav className="h-[70px] relative w-full px-6 md:px-16 lg:px-24 xl:px-32 flex items-center justify-between z-30 bg-[linear-gradient(to_right,#4338ca,#8b5cf6)]">
                 <Logo variant="light" />
 
                 <ul className="text-white md:flex hidden items-center gap-10">
